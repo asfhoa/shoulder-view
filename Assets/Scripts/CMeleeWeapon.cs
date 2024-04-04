@@ -87,11 +87,14 @@ public class CMeleeWeapon : MonoBehaviour
     // 공격 시작 함수 (isThrowing : 넉백 공격 여부)
     public void BeginAttack(bool isThrowing = false)
     {
+        // 공격 사운드 재생.
         attackAudio?.PlayRandomClip();
         isThrowingHit = isThrowing;
         inAttack = true;
 
         previousAttackPoints = new Vector3[attackPoints.Length];
+
+        // 공격 지점의 이전 위치 설정.
         for(int i = 0; i<previousAttackPoints.Length; i++)
         {
             // TransformDirection : 로컬 좌표계를 월드 좌표계로 변환.
@@ -109,6 +112,8 @@ public class CMeleeWeapon : MonoBehaviour
         inAttack = false;
 
 #if UNITY_EDITOR
+        // Clear the previous positions so we don't draw the line anymore
+        // 더 이상 선을 그리지 않도록 이전 위치를 지웁니다.
         for (int i = 0; i < attackPoints.Length; i++)
             attackPoints[i].previousPositions.Clear();
 #endif
@@ -119,6 +124,7 @@ public class CMeleeWeapon : MonoBehaviour
         if (!inAttack)
             return;
 
+        // 공격 지점의 현재 위치 설정.
         for(int i = 0; i < attackPoints.Length; i++)
         {
             AttackPoint point = attackPoints[i];
