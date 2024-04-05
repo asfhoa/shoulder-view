@@ -2,6 +2,7 @@ using Gamekit3D;
 using UnityEngine;
 
 
+[DefaultExecutionOrder(100)]
 public class CChomperHegaviour : MonoBehaviour
 {
     public enum AUDIO
@@ -63,7 +64,7 @@ public class CChomperHegaviour : MonoBehaviour
     }
     private void OnDisable()
     {
-        
+
     }
 
     private void PlayStep(int frontFoot)
